@@ -10,6 +10,7 @@ import {
     DropdownItem
 } from 'reactstrap';
 
+import cookie from 'react-cookie';
 import './WeatherForm.css';
 
 export default class WeatherForm extends React.Component {
@@ -37,6 +38,7 @@ export default class WeatherForm extends React.Component {
         this.handleImperialUnit = this.handleImperialUnit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleTempToggle = this.handleTempToggle.bind(this);
+		// this.handlefav = this.handlefav.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -60,11 +62,17 @@ export default class WeatherForm extends React.Component {
                             <DropdownItem type='button' onClick={this.handleImperialUnit}>&ordm; F</DropdownItem>
                         </DropdownMenu>
                     </ButtonDropdown>&nbsp;
-                    <Button color="info">Check</Button>
+                    <Button color="info">Check</Button>&nbsp;
+					<Button color="info">Add</Button>&nbsp;
                 </Form>
             </div>
         );
     }
+
+	// handlefav(){
+	// 	cookie.save(this.state.inputValue,this.state.inputValue);
+	// }
+
 
     handleInputChange(e) {
         this.setState({inputValue: e.target.value});
@@ -80,11 +88,12 @@ export default class WeatherForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
+		// console.log(this.state.inputValue);
+		cookie.save(this.state.inputValue,this.state.inputValue);
         this.inputEl.blur();
         if (this.state.inputValue && this.state.inputValue.trim()) {
             this.props.onQuery(this.state.inputValue, this.state.unit);
-            
+
         } else {
             this.state.inputEl = this.props.city;
         }
