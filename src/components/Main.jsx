@@ -11,7 +11,11 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink
+    NavLink,
+    Dropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
 } from 'reactstrap';
 
 import Today from 'components/Today.jsx';
@@ -25,11 +29,13 @@ export default class Main extends React.Component {
 
         this.state = {
             unit: 'metric',
-            navbarToggle: false
+            navbarToggle: false,
+            dropdownOpen: false
         };
 
         this.handleNavbarToggle = this.handleNavbarToggle.bind(this);
         this.handleUnitChange = this.handleUnitChange.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
 
     render() {
@@ -48,6 +54,16 @@ export default class Main extends React.Component {
                                     <NavItem>
                                         <NavLink tag={Link} to='/forecast'>Forecast</NavLink>
                                     </NavItem>
+                                    <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                        <DropdownToggle caret>My Faorite</DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem header>Header</DropdownItem>
+                                            <DropdownItem disabled>Action</DropdownItem>
+                                            <DropdownItem>Another Action</DropdownItem>
+                                            <DropdownItem divider />
+                                            <DropdownItem>Another Action</DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
                                 </Nav>
                                 <span className='navbar-text ml-auto'>DataLab</span>
                             </Collapse>
@@ -65,6 +81,11 @@ export default class Main extends React.Component {
         );
     }
 
+    toggle() {
+        this.setState((prevState, props) => ({
+            dropdownOpen : !this.state.dropdownOpen
+        }))
+    }
     handleNavbarToggle() {
         this.setState((prevState, props) => ({
             navbarToggle: !prevState.navbarToggle
