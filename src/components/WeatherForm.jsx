@@ -84,6 +84,7 @@ export default class WeatherForm extends React.Component {
         this.inputEl.blur();
         if (this.state.inputValue && this.state.inputValue.trim()) {
             this.props.onQuery(this.state.inputValue, this.state.unit);
+            
         } else {
             this.state.inputEl = this.props.city;
         }

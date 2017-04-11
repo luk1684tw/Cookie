@@ -30,7 +30,8 @@ export default class Main extends React.Component {
         this.state = {
             unit: 'metric',
             navbarToggle: false,
-            dropdownOpen: false
+            dropdownOpen: false,
+            city: ""
         };
 
         this.handleNavbarToggle = this.handleNavbarToggle.bind(this);
@@ -57,11 +58,7 @@ export default class Main extends React.Component {
                                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                         <DropdownToggle caret>My Faorite</DropdownToggle>
                                         <DropdownMenu>
-                                            <DropdownItem header>Header</DropdownItem>
-                                            <DropdownItem disabled>Action</DropdownItem>
-                                            <DropdownItem>Another Action</DropdownItem>
-                                            <DropdownItem divider />
-                                            <DropdownItem>Another Action</DropdownItem>
+                                            <span>{document.cookie}</span>
                                         </DropdownMenu>
                                     </Dropdown>
                                 </Nav>
@@ -91,6 +88,8 @@ export default class Main extends React.Component {
             navbarToggle: !prevState.navbarToggle
         }));
     }
+
+
 
     handleUnitChange(unit) {
         this.setState({
