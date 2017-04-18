@@ -89,7 +89,11 @@ export default class WeatherForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 		// console.log(this.state.inputValue);
-		cookie.save(this.state.inputValue,this.state.inputValue);
+		if (cookie.load('1') != undefined)
+			cookie.save('1',cookie.load('1') + " " + this.state.inputValue);
+		else {
+			cookie.save('1',this.state.inputValue);
+		}
         this.inputEl.blur();
         if (this.state.inputValue && this.state.inputValue.trim()) {
             this.props.onQuery(this.state.inputValue, this.state.unit);

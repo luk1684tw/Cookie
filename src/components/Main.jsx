@@ -21,6 +21,8 @@ import {
 import Today from 'components/Today.jsx';
 import Forecast from 'components/Forecast.jsx';
 
+import cookie from 'react-cookie';
+
 import './Main.css';
 
 export default class Main extends React.Component {
@@ -56,9 +58,9 @@ export default class Main extends React.Component {
                                         <NavLink tag={Link} to='/forecast'>Forecast</NavLink>
                                     </NavItem>
                                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                        <DropdownToggle caret>My Faorite</DropdownToggle>
+                                        <DropdownToggle caret>My Favorite</DropdownToggle>
                                         <DropdownMenu>
-                                            <span>{document.cookie}</span>
+                                            <span>{cookie.load('1')}</span>
                                         </DropdownMenu>
                                     </Dropdown>
                                 </Nav>
